@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+
+	
+	<context:component-scan base-package="com.ztesoft.bsn.cache.redis" />
+
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+        <property name="maxIdle" value="${redis.maxIdle}" />  
+        <property name="maxTotal" value="${redis.maxActive}" />   
+        <property name="maxWaitMillis" value="${redis.maxWait}" />   
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" /> 
+        
+    </bean>  
+
+	<bean id="jedisConnFactory" 
+    class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
+    p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig" p:use-pool="true"/>
+
+
+	<bean id="kypo" class="com.esotericsoftware.kryo.Kryo" />
+	
+	<bean id="kypoSerialer" class="com.ztesoft.bsn.cache.redis.serializer.KypoSerializer"/>
+	
+	<bean id="msgPack" class="org.msgpack.MessagePack" />
+	
+	<bean id="jackson2JsonRedisSerializer" class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer">
+		<constructor-arg value="java.lang.Object" />
+	</bean>
+
+	<!-- redis template definition -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnFactory"  p:valueSerializer-ref="kypoSerialer"
+          p:hashValueSerializer-ref="jackson2JsonRedisSerializer">
+        <property name="keySerializer">  
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>  
+        </property>
+	</bean>
+	
+	
+		
+</beans>

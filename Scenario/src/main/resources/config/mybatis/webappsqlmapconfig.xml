@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="dialect" value="MySql"/>
+	</properties>
+	<settings>
+		<setting name="useGeneratedKeys" value="true"/>
+	</settings>
+	
+	<!-- - - - - - - -映射文件路径：改到spring-dao.xml里面配置目录了，以后不需要手动增加xml- - - - - - -->
+	
+</configuration>
