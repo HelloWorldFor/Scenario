@@ -14,7 +14,7 @@ public class ZooKeeperDemo {
 
 	public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         ZooKeeper zk = new ZooKeeper("127.0.0.1:12181", 300000, new DemoWatcher());//连接zk server
-        String node = "/app3";
+        String node = "/dubbo";
         Stat stat = zk.exists(node, false);//检测/app1是否存在
         if (stat == null) {
             //创建节点

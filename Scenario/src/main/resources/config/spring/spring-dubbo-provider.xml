@@ -8,9 +8,11 @@
  http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<bean id="demoService" class="com.ztesoft.bsn.dubbo.demo.service.impl.DemoServiceImpl" />
+	<bean id="rechargeService" class="com.ztesoft.bsn.dubbo.recharge.service.impl.Recharge" />
 
 	<dubbo:application name="scenario" organization="ecs"/>
 	<dubbo:protocol name="dubbo" port="20880" />
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:12181,127.0.0.1:12182"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.demo.service.DemoService" ref="demoService"/>
+	<dubbo:service interface="com.ztesoft.bsn.dubbo.recharge.service.IRecharge" ref="rechargeService"/>
 </beans>
