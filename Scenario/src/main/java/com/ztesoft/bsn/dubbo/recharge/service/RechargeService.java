@@ -8,7 +8,7 @@ import com.ztesoft.bsn.dubbo.recharge.entity.RechargeRequestDto;
  * @author Administrator
  *	充值接口
  */
-public interface IRecharge {
+public interface RechargeService {
 	
 	public DubboResponse recharge(RechargeRequestDto rechargeQequestDto); 
 

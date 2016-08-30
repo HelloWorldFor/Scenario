@@ -2,9 +2,9 @@ package com.ztesoft.bsn.dubbo.recharge.service.impl;
 
 import com.ztesoft.bsn.dubbo.entity.DubboResponse;
 import com.ztesoft.bsn.dubbo.recharge.entity.RechargeRequestDto;
-import com.ztesoft.bsn.dubbo.recharge.service.IRecharge;
+import com.ztesoft.bsn.dubbo.recharge.service.RechargeService;
 
-public class Recharge implements IRecharge{
+public class RechargeServiceImpl implements RechargeService{
 
 	@Override
 	public DubboResponse recharge(RechargeRequestDto rechargeQequestDto) {

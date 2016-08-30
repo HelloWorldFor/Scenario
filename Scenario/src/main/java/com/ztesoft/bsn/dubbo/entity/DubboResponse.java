@@ -1,12 +1,19 @@
 package com.ztesoft.bsn.dubbo.entity;
 
+import java.io.Serializable;
+
 /**
  * dubbo返回基类
  * @author Administrator
  *
  */
-public class DubboResponse {
+public class DubboResponse implements Serializable{
 	
+	/** 
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+	 */ 
+	private static final long serialVersionUID = -5109501154478804669L;
+
 	private int resultCode;
 	
 	private String resultDesc;
