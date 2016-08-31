@@ -15,4 +15,5 @@
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:12181,127.0.0.1:12182"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.demo.service.DemoService" ref="demoService"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.recharge.service.RechargeService" ref="rechargeService"/>
+	<!-- dubbo:provider filter=""/> -->
 </beans>
