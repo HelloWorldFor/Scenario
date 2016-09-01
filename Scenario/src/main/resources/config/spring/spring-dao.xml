@@ -18,7 +18,7 @@
 	</bean>
 
 	<!-- 配置主要的majorSqlSessionTemplate -->
-	<bean id="majorSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" >
+	<bean id="majorSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
 		<constructor-arg index="0" ref="majorSqlSessionFactory" />
 		<constructor-arg index="1" value="BATCH" />
 		<!-- 如果想要进行批量操作可加入这个属性 -->

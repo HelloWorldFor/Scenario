@@ -11,8 +11,8 @@
 	<bean id="rechargeService" class="com.ztesoft.bsn.dubbo.recharge.service.impl.RechargeServiceImpl" />
 
 	<dubbo:application name="scenario" organization="ecs"/>
-	<dubbo:protocol name="dubbo" port="20880" />
-	<dubbo:registry protocol="zookeeper" address="127.0.0.1:12181,127.0.0.1:12182"/>
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+	<dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.demo.service.DemoService" ref="demoService"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.recharge.service.RechargeService" ref="rechargeService"/>
 	<!-- dubbo:provider filter=""/> -->
