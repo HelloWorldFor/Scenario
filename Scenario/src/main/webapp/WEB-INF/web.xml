@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Scenario</display-name>
+  <display-name>scenario</display-name>
   <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:/config/spring-content.xml</param-value>
