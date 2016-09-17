@@ -10,9 +10,8 @@
 		
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.targetJDK>1.6</project.build.targetJDK>
+		<project.build.targetJDK>1.7</project.build.targetJDK>
 		<project.contextPath>/</project.contextPath>
-		<project.port>28080</project.port>
 		<org.springframework.version>4.2.3.RELEASE</org.springframework.version>
 		<mybatis.version>3.2.2</mybatis.version>
 		<mybatis.spring.version>1.2.2</mybatis.spring.version>
@@ -98,6 +97,12 @@
 		    <groupId>org.apache.zookeeper</groupId>
 		    <artifactId>zookeeper</artifactId>
 		    <version>3.4.8</version>
+		    <exclusions>  
+	            <exclusion>  
+	                <groupId>log4j</groupId>  
+	                <artifactId>log4j</artifactId>  
+	            </exclusion>  
+         	</exclusions>  
 		    <type>pom</type>
 		</dependency>
 		<dependency>
@@ -229,11 +234,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
@@ -304,14 +309,14 @@
 				</includes>
 				<filtering>true</filtering>
 			</resource>
-			<resource>
+			<!-- <resource>
 				<targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
 				<directory>src/main/resources/config/</directory>
 				<includes>
 					<include>spring-content.xml</include>
 				</includes>
 				<filtering>true</filtering>
-			</resource>
+			</resource> -->
 		</resources>
 		<plugins>
 			<!-- 设置源文件编码方式 -->
@@ -337,7 +342,7 @@
 					<testTarget>${project.build.targetJDK}</testTarget>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-jar-plugin</artifactId>  
                 <configuration>  
@@ -349,9 +354,9 @@
                         </manifest>  
                     </archive>  
                 </configuration>  
-			</plugin>
+			</plugin> -->
 			 <!-- 拷贝依赖的jar包到lib目录 -->  
-            <plugin>  
+            <!-- <plugin>  
                 <groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-dependency-plugin</artifactId>  
                 <executions>  
@@ -368,7 +373,7 @@
                         </configuration>  
                     </execution>  
                 </executions>  
-            </plugin>
+            </plugin> -->
 		</plugins>
 	</build>
 </project>

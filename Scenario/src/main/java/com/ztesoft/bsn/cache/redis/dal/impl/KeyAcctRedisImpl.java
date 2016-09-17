@@ -14,7 +14,6 @@ public class KeyAcctRedisImpl<K extends Object, V extends Object> implements
 	@Autowired
 	public RedisTemplate<String, Object> redisTemplate;
 	
-	
 
 	@Override
 	public long setKeyAcctDto(KeyAcctDto keyAcctDto) {
@@ -26,7 +25,6 @@ public class KeyAcctRedisImpl<K extends Object, V extends Object> implements
 
 	@Override
 	public KeyAcctDto getKeyAcctDto(long acctId) {
-		
 		return (KeyAcctDto) redisTemplate.opsForList().range("keyAcct:"+acctId, 0, -1).get(0);
 		
 	}

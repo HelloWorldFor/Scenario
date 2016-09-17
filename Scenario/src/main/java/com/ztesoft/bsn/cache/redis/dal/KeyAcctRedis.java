@@ -9,5 +9,6 @@ public interface KeyAcctRedis {
 	public long setKeyAcctDto(KeyAcctDto keyAcctDto);
 	
 	public void setKeyName(String key,String name);
+
 	
 }

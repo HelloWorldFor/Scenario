@@ -10,4 +10,5 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<import resource="classpath:config/spring/spring-transaction.xml" />
 	<import resource="classpath:config/spring/spring-dubbo-provider.xml"/>
 	<import resource="classpath:config/spring/spring-data-redis.xml" />
+	<import resource="classpath:config/spring/spring-redis-cluster.xml" />
 </beans>
