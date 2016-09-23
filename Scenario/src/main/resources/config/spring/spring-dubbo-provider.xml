@@ -11,9 +11,11 @@
 	<bean id="rechargeService" class="com.ztesoft.bsn.dubbo.recharge.service.impl.RechargeServiceImpl" />
 
 	<dubbo:application name="scenario" organization="ecs"/>
-	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />	
 	<dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.demo.service.DemoService" ref="demoService"/>
 	<dubbo:service interface="com.ztesoft.bsn.dubbo.recharge.service.RechargeService" ref="rechargeService"/>
 	<!-- dubbo:provider filter=""/> -->
+	<!-- 监控中心配置，从注册中心发现监控中心地址 -->  
+	<dubbo:monitor protocol="registry"/>
 </beans>
