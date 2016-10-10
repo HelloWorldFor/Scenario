@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<mongo:mongo-client credentials="siteRootAdmin:root@admin" replica-set="${mongo.host.replica}">
+		<mongo:client-options connect-timeout="1000" 
+		threads-allowed-to-block-for-connection-multiplier=""
+		max-connection-idle-time="1500"
+		max-wait-time="1500"
+		heartbeat-connect-timeout="1500"
+		connections-per-host="300"
+		socket-keep-alive="true"/>
+	</mongo:mongo-client> 
+	
+	
+	<mongo:db-factory id="mongoDbFactory" authentication-dbname="admin"  mongo-ref="mongo" dbname="testXN" />
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
+		c:mongoDbFactory-ref="mongoDbFactory" /> 
+
+  	<mongo:repositories base-package="com.ztesoft.bsn.cache.mongodb.repository" />
+     
+</beans>

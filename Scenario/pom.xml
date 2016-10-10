@@ -23,47 +23,50 @@
 		<httpclient.version>4.3.6</httpclient.version>
 		<quartz.version>2.1.6</quartz.version>
 		<ehcache.version>2.10.0</ehcache.version>
+		<spring.data.mongodb.version>1.9.3.RELEASE</spring.data.mongodb.version>
+		<mongo.driver.version>3.2.2</mongo.driver.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.ztesoft.bsn</groupId>
-  			<artifactId>service-interface</artifactId>
+  			<artifactId>service-api</artifactId>
   			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${mongo.driver.version}</version>
+		</dependency>
+		<dependency>
+  			<groupId>org.springframework.data</groupId>
+  			<artifactId>spring-data-mongodb</artifactId>
+  			<version>${spring.data.mongodb.version}</version>
+  		</dependency>
 		<dependency>
 		    <groupId>org.codehaus.jackson</groupId>
 		    <artifactId>jackson-mapper-asl</artifactId>
 		    <version>1.9.13</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.8.1</version>
 		</dependency>
-				
-		<!-- https://mvnrepository.com/artifact/com.esotericsoftware.kryo/kryo -->
 		<dependency>
 		    <groupId>com.esotericsoftware.kryo</groupId>
 		    <artifactId>kryo</artifactId>
 		    <version>2.21</version>
 		</dependency>
-		
-	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-redis</artifactId>
 		    <version>1.7.2.RELEASE</version>
 		</dependency>
-			
-	<!-- https://mvnrepository.com/artifact/org.msgpack/msgpack -->
 		<dependency>
 		    <groupId>org.msgpack</groupId>
 		    <artifactId>msgpack</artifactId>
 		    <version>0.6.11</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 		<dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>druid</artifactId>
@@ -74,7 +77,6 @@
 		    <artifactId>fastjson</artifactId>
 		    <version>1.2.7</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
@@ -82,8 +84,8 @@
 		</dependency>
 		<!-- dubbo -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
+			<groupId>com.alibaba</groupId>
 			<version>2.8.4</version>
 			<exclusions>
 				<exclusion>
@@ -92,7 +94,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
 		<dependency>
 		    <groupId>org.apache.zookeeper</groupId>
 		    <artifactId>zookeeper</artifactId>
@@ -181,6 +182,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -191,11 +198,23 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 				
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
@@ -234,11 +253,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
@@ -295,6 +314,10 @@
 			<id>ZTEsoft.Nexus</id>
 			<url>http://10.45.44.200:8081/nexus/content/groups/public</url>
 		</repository>
+		<repository>
+			<id>nexus-snapshots</id>
+			<url>http://10.45.47.168:8081/nexus/content/repositories/</url>
+		</repository>
 	</repositories>
 	
 	<build>
@@ -309,14 +332,14 @@
 				</includes>
 				<filtering>true</filtering>
 			</resource>
-			<!-- <resource>
+			<resource>
 				<targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
 				<directory>src/main/resources/config/</directory>
 				<includes>
 					<include>spring-content.xml</include>
 				</includes>
 				<filtering>true</filtering>
-			</resource> -->
+			</resource>
 		</resources>
 		<plugins>
 			<!-- 设置源文件编码方式 -->
@@ -342,7 +365,7 @@
 					<testTarget>${project.build.targetJDK}</testTarget>
 				</configuration>
 			</plugin>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-jar-plugin</artifactId>  
                 <configuration>  
@@ -354,9 +377,9 @@
                         </manifest>  
                     </archive>  
                 </configuration>  
-			</plugin> -->
+			</plugin> 
 			 <!-- 拷贝依赖的jar包到lib目录 -->  
-            <!-- <plugin>  
+            <plugin>  
                 <groupId>org.apache.maven.plugins</groupId>  
                 <artifactId>maven-dependency-plugin</artifactId>  
                 <executions>  
@@ -373,7 +396,7 @@
                         </configuration>  
                     </execution>  
                 </executions>  
-            </plugin> -->
+            </plugin>
 		</plugins>
 	</build>
 </project>

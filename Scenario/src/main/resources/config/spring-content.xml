@@ -6,9 +6,9 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<import resource="classpath:config/spring/spring-common.xml" />
 	<import resource="classpath:config/spring/spring-dao.xml" />
 	<import resource="classpath:config/spring/spring-datasource.xml" />
-	<import resource="classpath:config/spring/spring-service.xml" />
 	<import resource="classpath:config/spring/spring-transaction.xml" />
 	<import resource="classpath:config/spring/spring-dubbo-provider.xml"/>
 	<import resource="classpath:config/spring/spring-data-redis.xml" />
 	<import resource="classpath:config/spring/spring-redis-cluster.xml" />
+	<import resource="classpath:config/spring/spring-mongo.xml" />
 </beans>
